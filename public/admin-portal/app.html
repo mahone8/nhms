@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Portal</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <div class="brand">&#128274; Admin Portal</div>
+        <p id="welcomeMsg">Welcome</p>
+      </div>
+      <nav id="nav">
+        <!-- More sections (System Settings, etc.) are added here in later phases. -->
+        <button class="nav-btn active" data-tab="audit-logs" data-role="super_admin">Audit Logs</button>
+        <button class="nav-btn" data-tab="settings" data-role="super_admin">System Settings</button>
+      </nav>
+      <div class="sidebar-foot">
+        <button class="nav-btn" id="logoutBtn">&#8592; Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="main-inner">
+        <h2 id="pageTitle">Audit Logs</h2>
+        <div id="content"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="modalRoot"></div>
+
+  <script src="/js/admin-portal-app.js"></script>
+</body>
+</html>

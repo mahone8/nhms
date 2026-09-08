@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hostel Management System — Sign in</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="login-shell">
+    <div class="login-box">
+      <div class="login-header">
+        <div class="login-icon">&#127961;</div>
+        <h1>Hostel Management System</h1>
+        <p>Nazzal &middot; Nooroxotel &middot; Ayesha &middot; Aqsa &middot; Velvet Rose</p>
+      </div>
+
+      <div class="login-card">
+        <div class="role-toggle">
+          <button id="roleAdminBtn" class="active">Admin</button>
+          <button id="roleResidentBtn">Resident</button>
+        </div>
+
+        <form id="loginForm">
+          <div class="field">
+            <label>Username</label>
+            <input id="username" autocomplete="username" />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input id="password" type="password" autocomplete="current-password" />
+          </div>
+          <div id="errorMsg" class="error-msg" style="display:none;"></div>
+          <button type="submit" class="btn-primary">Sign in</button>
+        </form>
+      </div>
+
+      <div class="hint">
+        Demo admin login: <b>admin / admin123</b><br />
+        Demo resident login: <b>ayesha34 / resident123</b>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/login.js"></script>
+</body>
+</html>

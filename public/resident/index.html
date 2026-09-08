@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Hostel — Hostel Management System</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="brand">&#127961; Hostel Manager</div>
+        <p id="welcomeMsg">Welcome</p>
+      </div>
+      <button class="signout-link" id="logoutBtn">&#8592; Sign out</button>
+    </div>
+    <div class="top-tabs" id="tabs">
+      <button class="top-tab active" data-tab="overview">My room</button>
+      <button class="top-tab" data-tab="payments">My payments</button>
+      <button class="top-tab" data-tab="menu">Menu</button>
+    </div>
+  </header>
+
+  <main class="resident-main" id="content"></main>
+
+  <script src="/js/resident.js"></script>
+</body>
+</html>

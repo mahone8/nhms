@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resident Portal</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <div class="brand">&#127961; Resident Portal</div>
+        <p id="welcomeMsg">Welcome</p>
+      </div>
+      <nav id="nav">
+        <button class="nav-btn active" data-tab="dashboard">Dashboard</button>
+        <button class="nav-btn" data-tab="profile">My Profile</button>
+        <button class="nav-btn" data-tab="room">My Room</button>
+        <button class="nav-btn" data-tab="dues">My Dues</button>
+        <button class="nav-btn" data-tab="payments">Payment History</button>
+        <button class="nav-btn" data-tab="receipts">Receipts</button>
+        <button class="nav-btn" data-tab="stay">Stay Information</button>
+        <button class="nav-btn" data-tab="notices">Notices</button>
+      </nav>
+      <div class="sidebar-foot">
+        <button class="nav-btn" id="logoutBtn">&#8592; Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="main-inner">
+        <h2 id="pageTitle">Dashboard</h2>
+        <div id="content"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="modalRoot"></div>
+
+  <script src="/js/portal-app.js"></script>
+</body>
+</html>

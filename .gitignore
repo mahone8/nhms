@@ -1,0 +1,6 @@
+node_modules/
+db/hostel.db
+public/uploads/menu/*
+!public/uploads/menu/.gitkeep
+.env
+.vercel

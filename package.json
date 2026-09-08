@@ -1,0 +1,32 @@
+{
+  "name": "hostel-management-system",
+  "version": "1.0.0",
+  "description": "Multi-branch hostel management system (branches, beds, residents, payments, menu, accounts) with a real SQLite database.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node --no-warnings server.js",
+    "seed": "node --no-warnings db/seed.js",
+    "migrate": "node --no-warnings db/migrate.js",
+    "seed:pg": "node --no-warnings db/seed-postgres.js",
+    "dev:prod": "node --no-warnings app.js",
+    "test:jwt": "node --no-warnings lib/jwt.test.js",
+    "generate-monthly-rent": "node --no-warnings jobs/generate-monthly-rent.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.7.0",
+    "express-session": "^1.18.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.0",
+    "pg": "^8.13.1"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

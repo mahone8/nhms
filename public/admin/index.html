@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Hostel Management System</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <div class="brand">&#127961; Hostel Manager</div>
+        <p>Admin console</p>
+      </div>
+      <nav id="nav">
+        <button class="nav-btn active" data-tab="overview">Overview</button>
+        <button class="nav-btn" data-tab="branches">Branches &amp; beds</button>
+        <button class="nav-btn" data-tab="residents">Residents</button>
+        <button class="nav-btn" data-tab="payments">Payments</button>
+        <button class="nav-btn" data-tab="menu">Menu</button>
+        <button class="nav-btn" data-tab="accounts">Accounts</button>
+      </nav>
+      <div class="sidebar-foot">
+        <button class="nav-btn" id="logoutBtn">&#8592; Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="main-inner">
+        <h2 id="pageTitle">Overview</h2>
+        <div id="content"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="modalRoot"></div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

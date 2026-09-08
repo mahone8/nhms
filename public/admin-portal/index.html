@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Portal — Sign in</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="login-shell">
+    <div class="login-box">
+      <div class="login-header">
+        <div class="login-icon">&#128274;</div>
+        <h1>Admin Portal</h1>
+        <p>Sign in as Admin or Super Admin</p>
+      </div>
+
+      <div class="login-card">
+        <form id="loginForm">
+          <div class="field">
+            <label>Username</label>
+            <input id="username" autocomplete="username" />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input id="password" type="password" autocomplete="current-password" />
+          </div>
+          <div id="errorMsg" class="error-msg" style="display:none;"></div>
+          <button type="submit" class="btn-primary">Sign in</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/admin-portal-login.js"></script>
+</body>
+</html>

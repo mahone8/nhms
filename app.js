@@ -30,7 +30,7 @@ const app = express();
 // in front of this app), which is the correct, safe value for a typical
 // single-proxy PaaS deployment -- not `true`, which would trust an
 // unlimited chain and let a client spoof its own IP via the header.
-app.set("trust proxy", 1);
+app.set("trust proxy", true);
 
 app.use(helmet({
   contentSecurityPolicy: false,
@@ -49,8 +49,8 @@ const loginLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: "Too many login attempts. Please try again later." },
+  validate: { xForwardedForHeader: false },
 });
-app.use("/api/auth/login", loginLimiter);
 
 // Serves public/ locally for parity with how Vercel serves it (as static
 // files, automatically, without hitting this function at all). Harmless

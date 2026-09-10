@@ -22,6 +22,16 @@ const { loadCurrentUser } = require("./lib/rbac");
 
 const app = express();
 
+// Required on any host that sits behind a reverse proxy (Vercel, Bonto,
+// Render, etc.) -- without this, express-rate-limit refuses to run at
+// all when it sees an X-Forwarded-For header it's not configured to
+// trust, and throws on every request instead of just skipping rate
+// limiting. `1` means "trust exactly one hop" (the platform's own proxy
+// in front of this app), which is the correct, safe value for a typical
+// single-proxy PaaS deployment -- not `true`, which would trust an
+// unlimited chain and let a client spoof its own IP via the header.
+app.set("trust proxy", 1);
+
 app.use(helmet({
   contentSecurityPolicy: false,
 }));

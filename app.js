@@ -25,16 +25,15 @@ const app = express();
 // Required on any host that sits behind a reverse proxy (Vercel, Bonto,
 // Render, etc.) -- without this, express-rate-limit refuses to run at
 // all when it sees an X-Forwarded-For header it's not configured to
-// trust, and throws on every request instead of just skipping rate
-// limiting. `1` means "trust exactly one hop" (the platform's own proxy
-// in front of this app), which is the correct, safe value for a typical
-// single-proxy PaaS deployment -- not `true`, which would trust an
-// unlimited chain and let a client spoof its own IP via the header.
+// trust.
 app.set("trust proxy", true);
 
+// frameguard: false allows Bonto's internal iframe preview panel to embed the site
 app.use(helmet({
   contentSecurityPolicy: false,
+  frameguard: false,
 }));
+
 app.use(compression());
 app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
@@ -51,6 +50,7 @@ const loginLimiter = rateLimit({
   message: { error: "Too many login attempts. Please try again later." },
   validate: { xForwardedForHeader: false },
 });
+app.use("/api/auth/login", loginLimiter);
 
 // Serves public/ locally for parity with how Vercel serves it (as static
 // files, automatically, without hitting this function at all). Harmless
@@ -92,31 +92,23 @@ app.use("/api/notices", require("./routes-pg/notices"));
 app.use("/api/notifications", require("./routes-pg/notifications"));
 app.use("/api/settings", require("./routes-pg/settings"));
 
-// Remaining feature routes are added here phase by phase, per the order
-// in db/POSTGRES_SCHEMA.md.
-
 app.use("/api", (req, res) => {
   res.status(404).json({ error: "Not found." });
 });
 
 // Final error handler -- catches anything asyncHandler forwarded, or any
-// other synchronous throw, and always responds with JSON rather than
-// Express's default HTML error page (this is a JSON API).
+// other synchronous throw, and always responds with JSON.
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: "Something went wrong on our end." });
 });
 
-
 module.exports = app;
 
-// Only start a listening server when run directly (local dev via
-// `npm run dev:prod`). On Vercel, api/[...path].js imports this same
-// `app` and exports it directly as the serverless function handler.
 if (require.main === module) {
   const PORT = process.env.PORT || 3001;
-  app.listen(PORT, () => {
-    console.log(`Production app (Postgres) running at http://localhost:${PORT}`);
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Production app (Postgres) running at http://0.0.0.0:${PORT}`);
   });
 }

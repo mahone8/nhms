@@ -5,8 +5,7 @@
   "main": "app.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node --no-warnings app.js",
-    "start:legacy-demo": "node --no-warnings server.js",
+    "start": "node --no-warnings server.js",
     "seed": "node --no-warnings db/seed.js",
     "migrate": "node --no-warnings db/migrate.js",
     "seed:pg": "node --no-warnings db/seed-postgres.js",

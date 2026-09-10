@@ -47,8 +47,8 @@ skipped or ran against the wrong database -- double check DATABASE_URL.
 
 ### 3. Create your real Super Admin -- not the demo one
 ```bash
-DATABASE_URL="postgresql://neondb_owner:npg_C6I0ZvleaKVO@ep-bitter-frog-ax68nq6g-pooler.c-4.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require" node db/create-super-admin.js \
-  --name "Levelose" --username youruser --password "L£velose5716"
+DATABASE_URL="<same connection string>" node db/create-super-admin.js \
+  --name "Your Name" --username youruser --password "a genuinely strong password"
 ```
 Do not run `npm run seed:pg` for a real deployment -- that creates demo
 branches/beds and a "superadmin / SuperAdmin123!" account whose password

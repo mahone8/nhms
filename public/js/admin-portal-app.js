@@ -5,7 +5,18 @@ function esc(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp
 function fmtDateTime(d) { return d ? new Date(d).toLocaleString("en-US") : "—"; }
 
 (async function init() {
-  const me = await fetch("/api/auth/me").then((r) => r.json());
+  let me;
+  try {
+    const res = await fetch("/api/auth/me");
+    if (!res.ok) {
+      content.innerHTML = `<div class="empty-state">Having trouble reaching the server. <button class="btn-outline" onclick="location.reload()">Retry</button></div>`;
+      return;
+    }
+    me = await res.json();
+  } catch (err) {
+    content.innerHTML = `<div class="empty-state">Could not reach the server. <button class="btn-outline" onclick="location.reload()">Retry</button></div>`;
+    return;
+  }
   if (!me.user || (me.user.role !== "admin" && me.user.role !== "super_admin")) {
     window.location.href = "/admin-portal/";
     return;

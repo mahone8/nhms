@@ -12,7 +12,23 @@ function esc(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp
 function fmtDate(d) { return d ? new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "—"; }
 
 (async function init() {
-  const me = await fetch("/api/auth/me").then((r) => r.json());
+  let me;
+  try {
+    const res = await fetch("/api/auth/me");
+    if (!res.ok) {
+      // A transient error (a brief DB hiccup, a mid-request restart) is
+      // NOT the same as "not logged in" -- bouncing to the login page
+      // here would kick out a perfectly valid session just because one
+      // request failed. Show a retry state instead of destroying the
+      // session client-side.
+      content.innerHTML = `<div class="empty-state">Having trouble reaching the server. <button class="btn-outline" onclick="location.reload()">Retry</button></div>`;
+      return;
+    }
+    me = await res.json();
+  } catch (err) {
+    content.innerHTML = `<div class="empty-state">Could not reach the server. <button class="btn-outline" onclick="location.reload()">Retry</button></div>`;
+    return;
+  }
   if (!me.user || me.user.role !== "resident") {
     window.location.href = "/portal/";
     return;
